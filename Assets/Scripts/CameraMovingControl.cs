@@ -12,11 +12,11 @@ public class CameraMovingControl : MonoBehaviour
     }
     void Update()
     {
-        move.x = Input.GetAxisRaw("Horizontal");
-        
-        //move.y = Input.GetAxisRaw("");
-
+        move.x = Input.GetAxisRaw("Horizontal");        
+        move.y = Input.GetAxisRaw("Vertical");
+        move.Normalize();
         transform.Translate(move * Time.deltaTime * speed);
+        transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, 0, 10),-10);
     }
     public float GetMoveX()
     {
