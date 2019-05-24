@@ -8,7 +8,7 @@ public class MapMovingControl : MonoBehaviour
     public GameObject mountainAxis;
     public GameObject graveyardAxis;
     public GameObject cameraObj;
-    CameraMovingControl script_cameraObj;
+    public PlayerControl script_PlayerControl;
     float movingSpeed = 1;
 
     float scrollSpeed = 0.1f;
@@ -18,11 +18,10 @@ public class MapMovingControl : MonoBehaviour
 
     private void Start()
     {
-        script_cameraObj = cameraObj.GetComponent<CameraMovingControl>();
     }
     void Update()
     {
-            movingSpeed = script_cameraObj.GetMoveX();
+            movingSpeed = script_PlayerControl.GetMoveX();
             MountainIterativeDeployment();
             Offset -= Time.deltaTime * (movingSpeed * scrollSpeed);
             rendererMat.material.mainTextureOffset = new Vector2(Offset, 0);

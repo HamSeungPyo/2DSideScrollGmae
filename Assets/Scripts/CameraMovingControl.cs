@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class CameraMovingControl : MonoBehaviour
 {
+    public GameObject player;
     float speed = 5;
-    Vector2 move=new Vector2();
     void Start()
     {
         
     }
     void Update()
     {
-        move.x = Input.GetAxisRaw("Horizontal");        
-        move.y = Input.GetAxisRaw("Vertical");
-        move.Normalize();
-        transform.Translate(move * Time.deltaTime * speed);
+        transform.position = Vector3.Lerp( transform.position, player.transform.position, Time.deltaTime* speed);
         transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, 0, 10),-10);
     }
-    public float GetMoveX()
-    {
-        return move.x;
-    }
+    
 }
